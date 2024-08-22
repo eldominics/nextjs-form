@@ -5,7 +5,7 @@ export const signUpFormSchema = z.object({
     .string()
     .email({ message: "please include @ symbol in your email" })
     .trim(),
-  pasword: z
+  password: z
     .string()
     .min(8, { message: "Be at least 8 characters long" })
     .regex(/[a-zA-Z]/, { message: "Contain at least one letter." })
