@@ -5,18 +5,15 @@ export const signUpFormSchema = z.object({
     .string()
     .email({ message: "please include @ symbol in your email" })
     .trim(),
-  password: z
+  pasword: z
     .string()
     .min(8, { message: "Be at least 8 characters long" })
-    .refine((value) => /[A-Z]/.test(value), {
-      message: "Password must include at least one uppercase letter.",
+    .regex(/[a-zA-Z]/, { message: "Contain at least one letter." })
+    .regex(/[0-9]/, { message: "Contain at least one number." })
+    .regex(/[^a-zA-Z0-9]/, {
+      message: "Contain at least one special character.",
     })
-    .refine((value) => /[a-z]/.test(value), {
-      message: "Password must include at least one lowercase letter.",
-    })
-    .refine((value) => /[\W_]/.test(value), {
-      message: "Password must include at least one special symbol.",
-    }),
+    .trim(),
 
   hobbies: z.string().trim(),
 });
